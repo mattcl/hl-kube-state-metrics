@@ -17,7 +17,6 @@ spec:
       priority: 10
       services:
         - name: kube-state-metrics
-          port: 80
-          servicePort: 8080
+          port: 8080
   tls:
     certResolver: default
