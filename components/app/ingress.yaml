@@ -2,7 +2,8 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: ingress
+  name: kube-state-metrics-ingress
+  namespace: kube-system
   annotations:
     kubernetes.io/ingress.class: traefik-internal
   labels:
@@ -15,7 +16,8 @@ spec:
       match: Host(`kube-state-metrics.hl.ancalagon.black`)
       priority: 10
       services:
-        - name: kube-state-metrics-svc
+        - name: kube-state-metrics
           port: 80
+          servicePort: 8080
   tls:
     certResolver: default
