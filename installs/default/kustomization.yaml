@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../components/app
+  
+  
+  
+namespace: "kube-state-metrics"
+namePrefix: "kube-state-metrics-"
+images:
+  - name: "traefik/whoami"
+    newTag: "v1.9"
+  
+  
+configMapGenerator:
+  - name: app-config
+    envs:
+      - "app-config.env"
+  
