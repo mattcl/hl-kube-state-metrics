@@ -22,6 +22,10 @@ spec:
       automountServiceAccountToken: true
       containers:
       - image: registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.9.2
+        args:
+          - "--resources=pods"
+          - "--metric-labels-allowlist=pods=[*]"
+          - "--metric-denylist=kube_pod_ips,kube_pod_restart_policy,kube_pod_owner,kube_pod_status_scheduled_time"
         livenessProbe:
           httpGet:
             path: /healthz
